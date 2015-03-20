@@ -3,56 +3,60 @@
 #include <vector>
 #include "thecase.h"
 #include "homicide.h"
+#include "thecase.h"
+#include "investigator.h"
+#include "evidence.h"
 
 using std::string;
 using std::stringstream;
 using std::vector;
 
-Homicide(int number, vector<Investigator> investigators, vector<Evidence> the_evidence, string hour, string date, bool closed, vector<string> suspects, string mainsuspect, string guilty, string victim)
-	:number(number), investigators(investigators), the_evidence(the_evidence), hour(hour), date(date), closed(closed), suspects(suspects), mainsuspect(mainsuspect), guilty(guilty), victim(victim) {
+Homicide::Homicide(int number, vector<Investigator> investigators, vector<Evidence> the_evidence, string hour, string date, bool closed, vector<string> suspects, string mainsuspect, string guilty, string victim)
+	:TheCase(number, investigators, the_evidence, hour, date, closed), suspects(suspects), mainsuspect(mainsuspect), guilty(guilty), victim(victim) {
 }
 
-string toString() const{
+string Homicide::toString(){
 	stringstream ss;
 	ss << TheCase::toString();
 	ss << " Suspects: ";
 	for (int i = 0; i < suspects.size() - 1; i++){
-		ss << suspects[i].getName() << ", ";
+		ss << suspects[i] << ", ";
 	}
-	ss << suspects[suspects.size()].getName();
+	ss << suspects[suspects.size()];
 	ss << " Main Suspect: " << mainsuspect;
 	ss << " Guilty: " << guilty;
 	ss << " Victim: " << victim;
+	return ss.str();
 }
 
-vector<string> getSuspects() const{
+vector<string> Homicide::getSuspects() const{
 	return suspects;
 }
 
-string getMainSuspect() const{
+string Homicide::getMainSuspect() const{
 	return mainsuspect;
 }
 
-string getGuilty() const{
+string Homicide::getGuilty() const{
 	return guilty;
 }
 
-string getVictim() const{
-	return 
+string Homicide::getVictim() const{
+	return victim;
 }
 
-void setSuspects(vector<string> suspects){
+void Homicide::setSuspects(vector<string> suspects){
 	this->suspects = suspects;
 }
 
-void setMainSuspect(string mainsuspect){
+void Homicide::setMainSuspect(string mainsuspect){
 	this->mainsuspect = mainsuspect;
 }
 
-void setGuilty(string guilty){
+void Homicide::setGuilty(string guilty){
 	this->guilty = guilty;
 }
 
-void setVictim(string victim){
+void Homicide::setVictim(string victim){
 	this->victim = victim;
 }

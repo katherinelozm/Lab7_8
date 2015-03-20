@@ -9,73 +9,73 @@ using std::string;
 using std::stringstream;
 using std::vector;
 
-TheCase(int number, vector<Investigator> investigators, vector<Evidence> the_evidence, string hour, string date, bool closed)
+TheCase::TheCase(int number, vector<Investigator> investigators, vector<Evidence> the_evidence, string hour, string date, bool closed)
 	:number(number), investigators(investigators), the_evidence(the_evidence), hour(hour), date(date), closed(closed) {
 
 }
 
-virtual string toString() const{
+string TheCase::toString() const{
 	stringstream ss;
 	ss << "Investigators: ";
 	for (int i = 0; i < investigators.size() - 1; i++){
 		ss << investigators[i].getName() << ", ";
 	}
 	ss << investigators[investigators.size()].getName();
-	ss << " Evidence:"
+	ss << " Evidence:";
 	for (int i = 0; i < the_evidence.size() - 1; i++){
 		ss << the_evidence[i].getName() << ", ";
 	}
 	ss << the_evidence[the_evidence.size()].getName();
 	ss << " Hour: " << hour;
 	ss << " Date: " << date;
-	ss << closed ? " Case Closed " : " Case Open ";
+	ss << (closed ? " Case Closed " : " Case Open ");
 	return ss.str();
 }
 
-int getNumber() const{
+int TheCase::getNumber(){
 	return number;
 }
 
-vector<Investigator> getInvestigators(){
+vector<Investigator> TheCase::getInvestigators(){
 	return investigators;
 }
 
-vector<Evidence> getEvidence(){
-	return evidence;
+vector<Evidence> TheCase::getEvidence(){
+	return the_evidence;
 }
 
-string getHour(){
+string TheCase::getHour(){
 	return hour;
 }
 
-string getDate(){
+string TheCase::getDate(){
 	return date;
 }
 
-bool getClosed(){
+bool TheCase::getClosed(){
 	return closed;
 }
 
-void setNumber(int number){
+void TheCase::setNumber(int number){
 	this->number = number;
 }
 
-void setInvestigators(vector<Investigator> investigators){
+void TheCase::setInvestigators(vector<Investigator> investigators){
 	this->investigators = investigators;
 }
 
-void setEvidence(vector<Evidence>){
+void TheCase::setEvidence(vector<Evidence> the_evidence){
 	this->the_evidence = the_evidence;
 }
 
-void setHour(string){
+void TheCase::setHour(string hour){
 	this->hour = hour;
 }
 
-void setDate(string){
+void TheCase::setDate(string date){
 	this->date = date;
 }
 
-void setClosed(bool){
+void TheCase::setClosed(bool closed){
 	this->closed = closed;
 }

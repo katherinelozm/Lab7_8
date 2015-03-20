@@ -42,21 +42,21 @@ string Person::getName() const{
 }
 
 string Person::getUsername() const{
-	return name;
+	return username;
 }
 
 string Person::getPassword() const{
-	return name;
+	return password;
 }
 
 int Person::getAge() const{
-	return name;
+	return age;
 }
 
 string Person::getID()const{
-	return name;
+	return id;
 }
 
 string Person::getBday()const{
-	return name;
+	return bday;
 }

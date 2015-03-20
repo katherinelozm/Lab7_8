@@ -1,5 +1,8 @@
 #pragma once
 
+#include "thecase.h"
+#include "investigator.h"
+#include "evidence.h"
 #include <string>
 #include <vector>
 
@@ -13,7 +16,7 @@ class Homicide : public TheCase{
 	string victim;
 public:
 	Homicide(int, vector<Investigator>, vector<Evidence>, string, string, bool, vector<string>, string, string, string);
-	virtual string toString() const = 0;
+	virtual string toString() = 0;
 	vector<string> getSuspects() const;
 	string getMainSuspect() const;
 	string getGuilty() const;
