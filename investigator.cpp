@@ -1,6 +1,7 @@
 #include <string>
 #include <sstream>
 #include "person.h"
+#include "investigator.h"
 using std::string;
 using std::stringstream;
 

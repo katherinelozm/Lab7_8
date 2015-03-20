@@ -36,23 +36,23 @@ int getNumber() const{
 	return number;
 }
 
-vector<Investigator> getInvestigators() const{
+vector<Investigator> getInvestigators(){
 	return investigators;
 }
 
-vector<Evidence> getEvidence() const{
+vector<Evidence> getEvidence(){
 	return evidence;
 }
 
-string getHour() const{
+string getHour(){
 	return hour;
 }
 
-string getDate() const{
+string getDate(){
 	return date;
 }
 
-bool getClosed() const{
+bool getClosed(){
 	return closed;
 }
 

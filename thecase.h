@@ -16,12 +16,12 @@ class TheCase{
 public:
 	TheCase(int, vector<Investigator>, vector<Evidence>, string, string, bool);
 	virtual string toString() const = 0;
-	int getNumber() const;
-	vector<Investigator> getInvestigators() const;
-	vector<Evidence> getEvidence() const;
-	string getHour() const;
-	string getDate() const;
-	bool getClosed() const;
+	int getNumber();
+	vector<Investigator> getInvestigators();
+	vector<Evidence> getEvidence();
+	string getHour();
+	string getDate();
+	bool getClosed();
 	void setNumber(int);
 	void setInvestigators(vector<Investigator>);
 	void setEvidence(vector<Evidence>);

@@ -4,7 +4,7 @@
 #include <string>
 using std::string;
 
-class Person(){
+class Person{
 	string name, username, password, id, bday;
 	int age;
 public:
