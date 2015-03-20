@@ -6,14 +6,23 @@
 #include "evidence.h"
 #include "thecase.h"
 #include "homicide.h"
+#include "kidnap.h"
 
 using namespace std;
 
 int menu();
 Person* readPerson();
-
+bool isAdmin(vector<Person*>, int);
+bool isInvestigator(vector<Person*>, int);
+bool isForence(vector<Person*>, int);
+bool isHomicide(vector<TheCase*>, int);
+bool isKidnap(vector<TheCase*>, int);
 int main(){
 	vector<Person*> persons;
+    vector<Evidence> the_evidence;
+    vector<TheCase*> cases;
+    bool logged = false;
+    int logged_pos;
 	char ans;
 	do{
 		int option = menu();
@@ -22,8 +31,36 @@ int main(){
 			cout<<"Succesfully added!"<<endl;
 		}else if(option==2){
 
-		}else{
-
+		}else if(option==3){
+            string user, pass;
+            cout << "User: ";
+            cin >> user;
+            cout << "Password: ";
+            cin >> pass;
+            for (int i = 0; i < persons.size(); i++){
+                if (persons[i]->getUsername()==user && persons[i]->getPassword()==pass){
+                    logged = true;
+                    logged_pos = i;
+                    break;
+                }
+            }
+            while (logged){
+                if (isAdmin(persons, logged_pos)){
+                    cout << "Menu Admin" << endl;
+                    cout << "1. View Case" << endl;
+                    cout << "2. Delete Case" << endl;
+                } else if (isInvestigator(persons, logged_pos)){
+                    cout << "Menu Investigator" << endl;
+                    cout << "1. View Case" << endl;
+                    cout << "2. Add Evidence" << endl;
+                    cout << "3. Delete Evidence" << endl;
+                    cout << "4. Delete Case" << endl;
+                } else if (isForence(persons, logged_pos)){
+                    cout << "Menu Forence" << endl;
+                    cout << "1. View Case" << endl;
+                    cout << "2. Delete Case" << endl;
+                }
+            }
 		}
 
 
@@ -126,4 +163,44 @@ int menu(){
 	cout << "3. Login" << endl;
 	cin >> option;
 	return option;
+}
+
+bool isAdmin(vector<Person*> persons, int pos){
+    if (Admin* a = dynamic_cast<Admin*>(persons[pos])){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool isInvestigator(vector<Person*> persons, int pos){
+    if (Investigator* a = dynamic_cast<Investigator*>(persons[pos])){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool isForence(vector<Person*> persons, int pos){
+    if (Forence* a = dynamic_cast<Forence*>(persons[pos])){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool isHomicide(vector<TheCase*> cases, int pos){
+    if (Homicide* a = dynamic_cast<Homicide*>(cases[pos])){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool isKidnap(vector<TheCase*> cases, int pos){
+    if (Kidnap* a = dynamic_cast<Kidnap*>(cases[pos])){
+        return true;
+    } else {
+        return false;
+    }
 }
