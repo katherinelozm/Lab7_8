@@ -9,7 +9,7 @@ class Forence:public Person{
 	string firstday, schedule;
 public:
 	Forence(string,string,string,int,string,string,string,string);
-	virtual string toString()const=0;
+	string toString()const;
 	void setFirstday(string);
 	void setSchedule(string);
 	string getFirstday()const;
