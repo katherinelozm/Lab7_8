@@ -9,7 +9,7 @@ class Admin:public Person{
 	string pass, spot;
 public:
 	Admin(string,string,string,int,string,string,string,string);
-	virtual string toString()const=0;
+	string toString()const;
 	void setPass(string);
 	void setSpot(string);
 	string getPass()const;
