@@ -7,10 +7,11 @@
 #include "thecase.h"
 #include "homicide.h"
 
+using namespace std;
 
 int main(){
-	vector<
-	bool logged;
+	vector<Person*> persons;
+	bool logged = false;
 	int logged_pos;
 	int ans;
 	do{
@@ -25,7 +26,7 @@ int main(){
 		} else if (ans==2){
 			
 		} else if (ans==3){
-			//
+			
 		}	
 	} while (ans!=0);
 	return 0;

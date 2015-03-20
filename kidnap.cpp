@@ -7,7 +7,7 @@ using std::string;
 using std::stringstream;
 
 
-Kidnap::Kidnap(int, vector<Investigator>, vector<Evidence>, string, string, bool, string ,string, string, bool, bool, int)
+Kidnap::Kidnap(int number, vector<Investigator> investigators, vector<Evidence> the_evidence, string hour, string date, bool closed, string vname,string vplace, string vreason, bool vrescue, bool vstate, int vrcount)
 	:TheCase(number,investigators,the_evidence,hour,date,closed),vname(vname),vplace(vplace),vreason(vreason),vrescue(vrescue),vstate(vstate),vrcount(vrcount){
 
 }
