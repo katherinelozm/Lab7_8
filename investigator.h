@@ -9,7 +9,7 @@ class Investigator:public Person{
 	int currentp, solvedp, unsolvedp;
 public:
 	Investigator(string,string,string,int,string,string,int,int,int);
-	virtual string toString()const=0;
+	virtual string toString()const;
 	void setCurrentp(int);
 	void setSolvedp(int);
 	void setUnsolvedp(int);

@@ -2,6 +2,8 @@
 
 #include <string>
 #include <vector>
+#include "investigator.h"
+#include "evidence.h"
 
 using std::string;
 using std::vector;
