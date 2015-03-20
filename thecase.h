@@ -17,7 +17,7 @@ class TheCase{
 	bool closed;
 public:
 	TheCase(int, vector<Investigator>, vector<Evidence>, string, string, bool);
-	virtual string toString() const = 0;
+	virtual string toString() const;
 	int getNumber();
 	vector<Investigator> getInvestigators();
 	vector<Evidence> getEvidence();

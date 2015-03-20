@@ -18,6 +18,7 @@ bool isInvestigator(vector<Person*>, int);
 bool isForence(vector<Person*>, int);
 bool isHomicide(vector<TheCase*>, int);
 bool isKidnap(vector<TheCase*>, int);
+
 int main(){
 	vector<Person*> persons;
     vector<Evidence> the_evidence;
@@ -25,17 +26,22 @@ int main(){
     bool logged = false;
     int logged_pos;
 	char ans;
-	do{
-		int option = menu();
-		if(option==1){
-			persons.push_back(readPerson());
-			cout<<"Succesfully added!"<<endl;
-		}else if(option==2){
-
-        }else if(option==3){
-            cases.push_back(readCase());
+    while (true){
+        int option = menu();
+        if(option==1){
+            persons.push_back(readPerson());
             cout<<"Succesfully added!"<<endl;
-		}else if(option==4){
+        }else if(option==2){
+            int del;
+            for (int i = 0; i < persons.size(); i++){
+                cout << i << ". " << persons[i]->toString() << endl;
+            }
+            cin >> del;
+            persons.erase(persons.begin() + del);
+        }else if(option==3){
+            cases.push_back(readCase(persons, the_evidence));
+            cout<<"Succesfully added!"<<endl;
+        }else if(option==5){
             string user, pass;
             cout << "User: ";
             cin >> user;
@@ -53,7 +59,6 @@ int main(){
                     cout << "Menu Admin" << endl;
                     cout << "1. View Case" << endl;
                     cout << "2. Add Case" << endl;
-                    cout << "3. Delete Case" << endl;
                     int optionadmin;
                     cin>>optionadmin;
                     if(optionadmin==1){
@@ -64,7 +69,7 @@ int main(){
                             }
                         }
                     }else if(optionadmin==2){
-                        cases.push_back(readCase(persons,cases));
+                        cases.push_back(readCase(persons, the_evidence));
                         cout<<"Succesfully added!"<<endl;
                     }else{
 
@@ -74,7 +79,6 @@ int main(){
                     cout << "1. View Case" << endl;
                     cout << "2. Add Evidence" << endl;
                     cout << "3. Delete Evidence" << endl;
-                    cout << "4. Delete Case" << endl;
                     int optionInv;
                     cin>>optionInv;
                     if(optionInv==1){
@@ -86,16 +90,46 @@ int main(){
                         }
 
                     }else if(optionInv==2){
-
+                        string name;
+                        string type;
+                        string place;
+                        bool fingerprint;
+                        bool process;
+                        cout << "Name: ";
+                        cin >> name;
+                        cout << "Type(Non Lethal Weapon, Lethal Weapon, C. Evidence) : ";
+                        cin >> type;
+                        cout << "1. Fingerprints: ";
+                        int f;
+                        cin >> f;
+                        if (f==1){
+                            fingerprint = true;
+                        } else {
+                            fingerprint = false;
+                        }
+                         cout << "1. Process: ";
+                        int p;
+                        cin >> p;
+                        if (p==1){
+                            process = true;
+                        } else {
+                            process = false;
+                        }
+                        Evidence e(name, type, place, fingerprint, process);
+                        the_evidence.push_back(e);
                     }else if(optionInv==3){
-
+                        int del;
+                        for (int i = 0; i < the_evidence.size(); i++){
+                            cout << i << ". " << the_evidence[i].toString() << endl;
+                        }
+                        cin >> del;
+                        the_evidence.erase(the_evidence.begin() + del);
                     }else{
 
                     }
                 } else if (isForence(persons, logged_pos)){
                     cout << "Menu Forence" << endl;
                     cout << "1. View Case" << endl;
-                    cout << "2. Delete Case" << endl;
                     int optionFor;
                     cin>>optionFor;
                     if(optionFor==1){
@@ -111,14 +145,17 @@ int main(){
                     }
 
                 }
+            } else if(option==4){
+                int del;
+                for (int i = 0; i < cases.size(); i++){
+                    cout << i << ". " << cases[i]->toString() << endl;
+                }
+                cin >> del;
+                cases.erase(cases.begin() + del);
+            } else {
+                break;
             }
-		}
-
-
-	}while(ans=='Y' || ans=='y');
-
-
-	return 0;
+    }		
 }
 
 Person* readPerson(){
@@ -231,18 +268,18 @@ TheCase* readCase(vector<Person*> persons, vector<Evidence> the_evidence){
         for (int i = 0; i < persons.size(); ++i)
         {
            if(isInvestigator(persons,i)){
-                cout<<*persons[i]<<endl;
+                cout<<persons[i]->toString()<<endl;
                 cout<<"Agregar? 1/0";
                 int theopt;
                 cin>>theopt;
                 if(theopt==1){
-                    inves.push_back(*persons[i]);
+                    //inves.push_back(dynamic_cast<Investigator>(*persons[i]));
                 }
            }
         }
         for (int i = 0; i < the_evidence.size(); ++i)
         {
-            cout<<the_evidence[i]<<endl;
+            cout<<the_evidence[i].toString()<<endl;
             cout<<"Agregar? 1/0";
             int theopt;
             cin>>theopt;
@@ -258,7 +295,7 @@ TheCase* readCase(vector<Person*> persons, vector<Evidence> the_evidence){
         cin>>date;
         cout<<"Victim Name: ";
         cin>>vname;
-        string<<"Victim Place: ";
+        cout<<"Victim Place: ";
         cin>>vplace;
         cout<<"Case state 1. Closed, 2. Open";
         int casest;
@@ -299,18 +336,18 @@ TheCase* readCase(vector<Person*> persons, vector<Evidence> the_evidence){
         for (int i = 0; i < persons.size(); ++i)
         {
            if(isInvestigator(persons,i)){
-                cout<<*persons[i]<<endl;
+                //cout<<*persons[i]<<endl;
                 cout<<"Agregar? 1/0";
                 int theopt;
                 cin>>theopt;
                 if(theopt==1){
-                    inves.push_back(*persons[i]);
+                   // inves.push_back(*persons[i]);
                 }
            }
         }
         for (int i = 0; i < the_evidence.size(); ++i)
         {
-            cout<<the_evidence[i]<<endl;
+            cout<<the_evidence[i].toString()<<endl;
             cout<<"Agregar? 1/0";
             int theopt;
             cin>>theopt;
@@ -355,8 +392,10 @@ int menu(){
 	cout << "Menu" << endl;
 	cout << "1. Add Person" << endl;
 	cout << "2. Delete Person" << endl;
-    cout << "3. Add Case"
-	cout << "4. Login" << endl;
+    cout << "3. Add Case" << endl;
+    cout << "4. Delete Case" << endl;
+	cout << "5. Login" << endl;
+    cout << "6. Exit" << endl;
 	cin >> option;
 	return option;
 }

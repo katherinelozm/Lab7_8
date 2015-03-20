@@ -14,7 +14,7 @@ class Kidnap : public TheCase{
 
 public:
 	Kidnap(int, vector<Investigator>, vector<Evidence>, string, string, bool, string ,string, string, bool, bool, int);
-	virtual string toString() const = 0;
+	virtual string toString() const;
 	string getVName()const;
 	string getVPlace()const;
 	string getVReason()const;

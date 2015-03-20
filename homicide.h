@@ -16,7 +16,7 @@ class Homicide : public TheCase{
 	string victim;
 public:
 	Homicide(int, vector<Investigator>, vector<Evidence>, string, string, bool, vector<string>, string, string, string);
-	virtual string toString() = 0;
+	virtual string toString();
 	vector<string> getSuspects() const;
 	string getMainSuspect() const;
 	string getGuilty() const;
