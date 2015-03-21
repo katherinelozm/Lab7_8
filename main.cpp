@@ -8,6 +8,7 @@
 #include "homicide.h"
 #include "kidnap.h"
 
+
 using namespace std;
 
 int menu();
@@ -336,7 +337,7 @@ TheCase* readCase(vector<Person*> persons, vector<Evidence> the_evidence){
         for (int i = 0; i < persons.size(); ++i)
         {
            if(isInvestigator(persons,i)){
-                //cout<<*persons[i]<<endl;
+                cout<<persons[i]->toString()<<endl;
                 cout<<"Agregar? 1/0";
                 int theopt;
                 cin>>theopt;
